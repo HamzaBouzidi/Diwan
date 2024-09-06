@@ -1,0 +1,159 @@
+:host {
+  display: block;
+  direction: rtl; 
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 50px); /* Adjust height to leave space for the footer */
+  background-color: #f9f9f9; /* Light gray background for the form container */
+}
+
+.form-card {
+  background-color: #ffffff;
+  border-radius: 8px; /* Slightly less rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 2.5rem; 
+  max-width: 500px;
+  width: 100%;
+  box-sizing: border-box; /* Ensures padding is included in the element's width */
+}
+
+.form-header {
+  display: flex;
+  flex-direction: column; /* Stack the logo and title vertically */
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.form-logo {
+  height: 120px; /* Adjust the height of the logo as needed */
+  margin-bottom: 15px; /* Space between logo and title */
+}
+
+h2 {
+  color: #333333; /* Dark gray for the heading */
+  font-size: 1.8rem;
+  margin: 0; /* Remove margin to align properly with the logo */
+}
+
+.form-field {
+  margin-bottom: 1.5rem;
+  width: 100%; /* Ensures form fields take full width of the container */
+  box-sizing: border-box; /* Ensures padding/margin does not cause overflow */
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: bold;
+  color: #555555; /* Medium gray for labels */
+}
+
+.p-input-icon-left {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%; /* Ensures input icons and fields are aligned properly */
+}
+
+.p-input-icon-left .pi {
+  position: absolute;
+  left: 10px;
+  color: #888888; /* Light gray for icons */
+}
+
+/* Style for text input fields */
+.p-input-icon-left input,
+.p-input-icon-left textarea,
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea#vacationPurpose,
+select {
+  padding-left: 2.5rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-radius: 6px; /* Slightly less rounded corners */
+  border: 1px solid #ccc;
+  width: 100%;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  box-sizing: border-box; /* Ensures padding does not cause overflow */
+}
+
+/* Focus effect for all input fields */
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+textarea#vacationPurpose:focus,
+select:focus {
+  border-color: #777777; /* Darker gray for focus */
+}
+
+/* Specific width and height for "الغرض من الحصول على الاجازة" */
+textarea#vacationPurpose {
+  width: 100%; /* Ensure it stays within form boundaries */
+  height: 100px; /* Adjust height as needed */
+  resize: none;
+  box-sizing: border-box; /* Ensures padding does not cause overflow */
+}
+
+/* Style for form actions (buttons) */
+.form-actions {
+  display: flex;
+  justify-content: center; /* Center the button */
+  margin-top: 2rem;
+}
+
+button {
+  width: 48%; /* Make the button fit nicely within the container */
+  font-size: 1rem;
+  padding: 0.75rem;
+  border-radius: 6px; /* Slightly less rounded corners */
+  background-color: #555555; /* Medium gray for buttons */
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Hover effect for buttons */
+button:hover {
+  background-color: #333333; /* Darker gray on hover */
+}
+
+/* Specific styles for success button */
+.p-button-success {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+/* Footer styling */
+.page-footer {
+  background-color: #f0f0f0; /* Light gray background to match the form */
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
+  color: #777777; /* Subdued gray for footer text */
+  width: 100%; /* Ensure it spans the entire page width */
+  position: relative; /* Position relative to the page */
+}
+
+.page-footer a {
+  color: #4CAF50; /* Link color to match the button's green */
+  text-decoration: none;
+}
+
+.page-footer a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

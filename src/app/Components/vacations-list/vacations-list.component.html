@@ -1,0 +1,26 @@
+<div class="search-container">
+  <input type="text" [(ngModel)]="searchTerm" placeholder="ابحث عن الموظف أو نوع الإجازة" class="search-input" dir="rtl">
+  <i class="fas fa-search search-icon"></i>
+</div>
+
+<table class="vacation-table" dir="rtl">
+  <thead>
+    <tr>
+      <th>اسم الموظف</th>
+      <th>تاريخ الإجازة</th>
+      <th>مدة الإجازة</th>
+      <th>نوع الإجازة</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of filteredEmployees">
+      <td>
+        <img [src]="employee.profilePicture" alt="صورة الموظف" class="profile-img">
+        <span class="employee-name">{{ employee.name }}</span>
+      </td>
+      <td>{{ employee.vacationDate | date: 'MMM dd, yyyy' }}</td>
+      <td>{{ employee.vacationDays }}</td>
+      <td>{{ employee.vacationType }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,142 @@
+.sidebar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    right: 0;
+    height: 100%;
+    background-color: #23689B; /* Subtle, distinguished off-white color */
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+    border-top-left-radius: 20px; /* Add rounding to top-left corner */
+    border-bottom-left-radius: 20px; /* Add rounding to bottom-left corner */
+    z-index: 1000;
+    width: 300px;
+}
+
+
+
+
+.sidebar-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 7.5rem;
+    }
+    .sidebar:hover {
+        width: 16rem;
+    }
+
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center align items horizontally */
+    padding: 50px;
+    margin-bottom: 20px; /* Add some space below the profile section */
+}
+
+.round {
+    border-radius: 50%;
+    height: 6rem; /* Slightly larger image */
+    width: 6rem; /* Match height for a perfect circle */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+    border: 2px solid #ccc;
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+.profile-text {
+    text-align: center; /* Center text horizontally */
+    border-top: 2px solid #e0e0e0;
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: bold; /* Make the name bold */
+    color: #D9DAB0; /* Darker color for better visibility */
+    margin: 0; /* Remove any default margin */
+}
+
+.profile-title {
+    font-size: 1.2rem;
+    color: #F4F5DB; /* Slightly darker gray for better visibility */
+    margin: 7px 0 0 0; /* Margin on top, no margin on other sides */
+    
+}
+
+.section-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #F4F5DB; /* Light gray color for section titles */
+    padding-right: 1.5rem;
+    margin-top: 10px; /* Reduced space above the section title */
+    margin-bottom: 15px; /* Reduced space below the section title */
+    text-align: right;
+    
+    
+}
+
+.custom-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: right;
+    flex-grow: 1;
+}
+
+.nav-link {
+    color: #F4F5DB; /* Set the text color to #F4F5DB */
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 3.25rem; /* Increased link height */
+    text-decoration: none;
+    padding-right: 1.5rem;
+    border-right: 3px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease;
+    direction: rtl;
+    font-size: 1.25rem; /* Increased nav link text size */
+}
+
+.nav-link:hover {
+    color: #81B622; /* Green color for hover state */
+    border-right-color: #81B622; /* Green border on hover */
+}
+
+.nav-text {
+    margin-left: 0.5rem;
+    font-size: 1.4rem; /* Increased text size */
+    letter-spacing: 0.025em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #F4F5DB; /* Set the text color to #F4F5DB */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.nav-link:hover .nav-text {
+    color: #487E95; /* Green color for text on hover */
+}
+
+
+.footer {
+    padding: 1.8rem; /* Increased padding for footer */
+    border-top: 2px solid #e0e0e0;
+}
+
+.logo-img {
+    width: 6rem; /* Increased logo size */
+    height: 6rem;
+    display: block;
+    margin: 0 auto;
+}
