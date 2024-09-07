@@ -1,0 +1,142 @@
+<div class="form-container">
+  <div class="form-card">
+    <div class="form-header">
+      <img src="assets/logo.png" alt="شعار" class="form-logo" />
+      <h2>ديوان المحاسبة الليبي</h2>
+      <h3>نموذج إخلاء طرف</h3>
+    </div>
+
+    <form #clearanceForm="ngForm" (ngSubmit)="onSubmit(clearanceForm)">
+      <!-- Recipient Info Section -->
+      <div class="form-field">
+        <label for="directorName">السيد / مدير الإدارة العامة للشؤون التالية</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-user"></i>
+          <input 
+            id="directorName" 
+            type="text" 
+            name="directorName" 
+            placeholder="أدخل اسم المدير" 
+            [(ngModel)]="directorName" 
+            required
+          />
+        </span>
+      </div>
+
+      <div class="form-field">
+        <label for="employeeName">بمناسبة إنهاء خدمات:</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-user"></i>
+          <input 
+            id="employeeName" 
+            type="text" 
+            name="employeeName" 
+            placeholder="أدخل اسم الموظف" 
+            [(ngModel)]="employeeName" 
+            required
+          />
+        </span>
+      </div>
+
+      <div class="form-field">
+        <label for="department">التابع لإدارة / مكتب:</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-sitemap"></i>
+          <input 
+            id="department" 
+            type="text" 
+            name="department" 
+            placeholder="أدخل الإدارة" 
+            [(ngModel)]="department" 
+            required
+          />
+        </span>
+      </div>
+
+      <div class="form-field">
+        <label for="reason">بسبب:</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-pencil"></i>
+          <textarea 
+            id="reason" 
+            name="reason" 
+            placeholder="أدخل السبب" 
+            [(ngModel)]="reason" 
+            required
+          ></textarea>
+        </span>
+      </div>
+
+      <!-- Single Table Section with both Entities and Input Fields -->
+      <div class="table-section">
+        <table class="clearance-table" dir="rtl">
+          <thead>
+            <tr>
+              <th>رقم</th>
+              <th>الجهة</th>
+              <th>التاريخ والتوقيع</th>
+              <th>الملاحظات</th>
+              <th>اسم</th>
+              <th>الصفة</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>الإدارة أو المكتب التابع له الموظف</td>
+              <td><input type="date" [(ngModel)]="tableRows[0].date" name="date0" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[0].notes" name="notes0" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[0].name" name="name0" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[0].position" name="position0" /></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>المكتب</td>
+              <td><input type="date" [(ngModel)]="tableRows[1].date" name="date1" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[1].notes" name="notes1" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[1].name" name="name1" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[1].position" name="position1" /></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>رئيس قسم الخدمات والمصايف/الحرَكة</td>
+              <td><input type="date" [(ngModel)]="tableRows[2].date" name="date2" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[2].notes" name="notes2" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[2].name" name="name2" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[2].position" name="position2" /></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>صندوق العاملين</td>
+              <td><input type="date" [(ngModel)]="tableRows[3].date" name="date3" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[3].notes" name="notes3" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[3].name" name="name3" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[3].position" name="position3" /></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>مكتب تقنية المعلومات</td>
+              <td><input type="date" [(ngModel)]="tableRows[4].date" name="date4" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[4].notes" name="notes4" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[4].name" name="name4" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[4].position" name="position4" /></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>إدارة شؤون العاملين</td>
+              <td><input type="date" [(ngModel)]="tableRows[5].date" name="date5" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[5].notes" name="notes5" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[5].name" name="name5" /></td>
+              <td><input type="text" [(ngModel)]="tableRows[5].position" name="position5" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button type="submit" class="p-button-rounded p-button-outlined p-button-success blue-button">إرسال</button>
+      </div>
+    </form>
+  </div>
+</div>

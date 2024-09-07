@@ -42,23 +42,22 @@
         </div>
       </div>
 
-      <!-- Section for reason of exit -->
-      <div class="form-field">
-        <label for="reason">أسباب الخروج</label>
-        <input 
-          id="reason" 
-          type="text" 
-          name="reason" 
-          placeholder="أسباب الخروج" 
-          [(ngModel)]="reason" 
-          #reasonCtrl="ngModel" 
-          required
-        />
-        <!-- Error message for reason -->
-        <div *ngIf="reasonCtrl.invalid && reasonCtrl.touched" class="error-message">
-          الرجاء إدخال سبب الخروج
-        </div>
-      </div>
+<!-- Section for reason of exit -->
+<div class="form-field">
+  <label for="reason">أسباب الخروج</label>
+  <textarea
+    id="reason"
+    name="reason"
+    placeholder="أدخل أسباب الخروج"
+    [(ngModel)]="reason"
+    #reasonCtrl="ngModel"
+    required
+  ></textarea>
+  <!-- Error message for reason -->
+  <div *ngIf="reasonCtrl.invalid && reasonCtrl.touched" class="error-message">
+    الرجاء إدخال سبب الخروج
+  </div>
+</div>
 
       <!-- Date and time sections -->
       <div class="form-row">
@@ -108,23 +107,6 @@
         </div>
       </div>
 
-      <!-- Signatures section -->
-      <div class="form-signatures">
-        <div class="signature">
-          <label>توقيع الموظف</label>
-          <div class="signature-line"></div>
-        </div>
-
-        <div class="signature">
-          <label>توقيع المدير المباشر</label>
-          <div class="signature-line"></div>
-        </div>
-
-        <div class="signature">
-          <label>توقيع المدير الأعلى</label>
-          <div class="signature-line"></div>
-        </div>
-      </div>
 
       <!-- Form actions -->
       <div class="form-actions">

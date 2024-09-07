@@ -1,0 +1,181 @@
+<div class="form-container">
+  <div class="form-card">
+    <div class="form-header">
+      <img src="assets/logo.png" alt="شعار" class="form-logo" />
+      <h2>نموذج ترشيح الحصول على صفة عضو ديوان المحاسبة</h2>
+      <h3>أولاً: معلومات عن المرشح</h3>
+    </div>
+
+    <form #nominationForm="ngForm" (ngSubmit)="onSubmit(nominationForm)">
+      <!-- Candidate Name -->
+      <div class="form-field">
+        <label for="candidateName">الاسم المرشح</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-user"></i>
+          <input 
+            id="candidateName" 
+            type="text" 
+            name="candidateName" 
+            placeholder="أدخل اسم المرشح" 
+            [(ngModel)]="candidateName" 
+            #candidateNameCtrl="ngModel" 
+            [ngClass]="{'is-invalid': candidateNameCtrl.invalid && candidateNameCtrl.touched}"
+            required
+          />
+        </span>
+        <div *ngIf="candidateNameCtrl.invalid && candidateNameCtrl.touched" class="error-message">
+          الرجاء إدخال اسم المرشح
+        </div>
+      </div>
+
+      <!-- Nomination Entity -->
+      <div class="form-field">
+        <label for="nominationEntity">جهة الترشيح</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-sitemap"></i>
+          <input 
+            id="nominationEntity" 
+            type="text" 
+            name="nominationEntity" 
+            placeholder="أدخل جهة الترشيح" 
+            [(ngModel)]="nominationEntity" 
+            #nominationEntityCtrl="ngModel" 
+            [ngClass]="{'is-invalid': nominationEntityCtrl.invalid && nominationEntityCtrl.touched}"
+            required
+          />
+        </span>
+        <div *ngIf="nominationEntityCtrl.invalid && nominationEntityCtrl.touched" class="error-message">
+          الرجاء إدخال جهة الترشيح
+        </div>
+      </div>
+
+      <!-- Nomination Date -->
+      <div class="form-field">
+        <label for="nominationDate">تاريخ الترشيح</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-calendar"></i>
+          <input 
+            id="nominationDate" 
+            type="date" 
+            name="nominationDate" 
+            [(ngModel)]="nominationDate" 
+            #nominationDateCtrl="ngModel" 
+            [ngClass]="{'is-invalid': nominationDateCtrl.invalid && nominationDateCtrl.touched}"
+            required
+          />
+        </span>
+        <div *ngIf="nominationDateCtrl.invalid && nominationDateCtrl.touched" class="error-message">
+          الرجاء إدخال تاريخ الترشيح
+        </div>
+      </div>
+
+      <!-- Current Job -->
+      <div class="form-field">
+        <label for="currentJob">جهة العمل الحالية</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-briefcase"></i>
+          <input 
+            id="currentJob" 
+            type="text" 
+            name="currentJob" 
+            placeholder="أدخل جهة العمل الحالية" 
+            [(ngModel)]="currentJob" 
+            #currentJobCtrl="ngModel" 
+            [ngClass]="{'is-invalid': currentJobCtrl.invalid && currentJobCtrl.touched}"
+            required
+          />
+        </span>
+        <div *ngIf="currentJobCtrl.invalid && currentJobCtrl.touched" class="error-message">
+          الرجاء إدخال جهة العمل الحالية
+        </div>
+      </div>
+
+      <!-- Date of Joining -->
+      <div class="form-field">
+        <label for="joiningDate">تاريخ الالتحاق بالديوان</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-calendar"></i>
+          <input 
+            id="joiningDate" 
+            type="date" 
+            name="joiningDate" 
+            [(ngModel)]="joiningDate" 
+            #joiningDateCtrl="ngModel" 
+            [ngClass]="{'is-invalid': joiningDateCtrl.invalid && joiningDateCtrl.touched}"
+            required
+          />
+        </span>
+        <div *ngIf="joiningDateCtrl.invalid && joiningDateCtrl.touched" class="error-message">
+          الرجاء إدخال تاريخ الالتحاق
+        </div>
+      </div>
+
+      <!-- Qualifications -->
+      <div class="form-field">
+        <label for="qualifications">المؤهل العلمي</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-graduation-cap"></i>
+          <input 
+            id="qualifications" 
+            type="text" 
+            name="qualifications" 
+            placeholder="أدخل المؤهل العلمي" 
+            [(ngModel)]="qualifications" 
+            #qualificationsCtrl="ngModel" 
+            [ngClass]="{'is-invalid': qualificationsCtrl.invalid && qualificationsCtrl.touched}"
+            required
+          />
+        </span>
+        <div *ngIf="qualificationsCtrl.invalid && qualificationsCtrl.touched" class="error-message">
+          الرجاء إدخال المؤهل العلمي
+        </div>
+      </div>
+
+      <!-- Previous Experience (Large Textarea) -->
+      <div class="form-field">
+        <label for="experience">الخبرة العملية</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-briefcase"></i>
+          <textarea 
+            id="experience" 
+            name="experience" 
+            placeholder="أدخل الخبرة العملية" 
+            [(ngModel)]="experience" 
+            #experienceCtrl="ngModel" 
+            [ngClass]="{'is-invalid': experienceCtrl.invalid && experienceCtrl.touched}"
+            required
+          ></textarea>
+        </span>
+        <div *ngIf="experienceCtrl.invalid && experienceCtrl.touched" class="error-message">
+          الرجاء إدخال الخبرة العملية
+        </div>
+      </div>
+
+      <!-- Nationality -->
+      <div class="form-field">
+        <label for="nationality">الجنسية</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-flag"></i>
+          <input 
+            id="nationality" 
+            type="text" 
+            name="nationality" 
+            placeholder="أدخل الجنسية" 
+            [(ngModel)]="nationality" 
+            #nationalityCtrl="ngModel" 
+            [ngClass]="{'is-invalid': nationalityCtrl.invalid && nationalityCtrl.touched}"
+            required
+          />
+        </span>
+        <div *ngIf="nationalityCtrl.invalid && nationalityCtrl.touched" class="error-message">
+          الرجاء إدخال الجنسية
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button type="submit" class="p-button-rounded p-button-outlined p-button-success blue-button">إرسال</button>
+      </div>
+    </form>
+  </div>
+</div>

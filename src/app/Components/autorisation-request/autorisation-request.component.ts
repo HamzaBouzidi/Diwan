@@ -1,16 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-autorisation-request',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './autorisation-request.component.html',
   styleUrl: './autorisation-request.component.css'
 })
 export class AutorisationRequestComponent {
-// Form fields bound with [(ngModel)]
   employeeName: string = '';
   period: string = '';
   reason: string = '';
@@ -18,7 +17,6 @@ export class AutorisationRequestComponent {
   exitTime: string = '';
   returnTime: string = '';
 
-  // Departments data for the dropdown (example data)
   departments = [
     { code: 'HR', name: 'الموارد البشرية' },
     { code: 'IT', name: 'تقنية المعلومات' },

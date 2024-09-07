@@ -1,0 +1,21 @@
+<div class="search-container">
+  <input type="text" [(ngModel)]="searchTerm" placeholder="ابحث " class="search-input" dir="rtl">
+  <i class="fas fa-search search-icon"></i>
+</div>
+
+<table class="authorization-table" dir="rtl">
+  <thead>
+    <tr>
+      <th>تاريخ الإذن</th>
+      <th>مدة التأخير</th>
+      <th>نوع الإذن</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let authorization of filteredAuthorizations">
+      <td>{{ authorization.authorizationDate | date: 'MMM dd, yyyy' }}</td>
+      <td>{{ authorization.lateDuration }}</td>
+      <td>{{ authorization.authorizationType }}</td>
+    </tr>
+  </tbody>
+</table>

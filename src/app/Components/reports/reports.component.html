@@ -1,0 +1,49 @@
+<div class="list-container">
+  <h2>قائمة تقارير فترة الاختبار</h2>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <input 
+      type="text" 
+      [(ngModel)]="searchTerm" 
+      placeholder="ابحث عن الاسم أو الوظيفة" 
+      class="search-input"
+    />
+    <i class="fas fa-search search-icon"></i>
+  </div>
+
+  <!-- Reports Table -->
+  <div class="table-wrapper">
+    <table class="report-table" dir="rtl">
+      <thead>
+        <tr>
+          <th>الاسم</th>
+          <th>الوظيفة</th>
+          <th>الرقم الوطني</th>
+          <th>الإدارة</th>
+          <th>تاريخ المباشرة</th>
+          <th>تاريخ انتهاء فترة الاختبار</th>
+          <th>الإجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let report of filteredReports">
+          <td>{{ report.name }}</td>
+          <td>{{ report.jobTitle }}</td>
+          <td>{{ report.nationalNumber }}</td>
+          <td>{{ report.department }}</td>
+          <td>{{ report.startDate | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ report.endDate | date: 'yyyy-MM-dd' }}</td>
+          <td class="action-buttons">
+            <button class="btn-view">
+              <i class="pi pi-eye"></i> عرض
+            </button>
+            <button class="btn-edit">
+              <i class="pi pi-pencil"></i> تعديل
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
