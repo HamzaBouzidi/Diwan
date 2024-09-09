@@ -14,26 +14,46 @@ import { MemberNominationFormComponent } from './Components/member-nomination-fo
 import { AcknowledgmentPledgeComponent } from './Components/acknowledgment-pledge/acknowledgment-pledge.component';
 import { ReportsComponent } from './Components/reports/reports.component';
 import { HealthAssuranceComponent } from './Components/health-assurance/health-assurance.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { LayoutComponent } from './Components/layout/layout.component';
+import { AuthLayoutComponentComponent } from './layouts/auth-layout-component/auth-layout-component.component';
 
 export const routes: Routes = [
+
+    {
+        path: 'dashboard',
+        component: LayoutComponent,
+        children: [
+            { path: 'vacations', component: VacationsComponent },
+            { path: 'vacations/vacation-request', component: ShortVacationRequestComponent },
+            { path: 'vacations/vacation-list', component: VacationsComponent },
+            { path: 'vacations/vacation-management', component: VacationsComponent },
+            { path: 'vacations/vacations-list', component: VacationListComponent },
+            { path: 'autorisation/autorisation', component: AutorisationComponent },
+            { path: 'autorisation/autorisation-request', component: AutorisationRequestComponent },
+            { path: 'autorisation/morning-autorisation-request', component: MorningLateRequestComponent },
+            { path: 'autorisation/autorisation-list', component: AutorisationListComponent },
+            { path: 'definitions-autorisations', component: DefinitionsAutorisationsComponent },
+            { path: 'definitions-autorisations/national-identity', component: NationalIdentityCardComponent },
+            { path: 'definitions-autorisations/release-form', component: ReleaseFormComponent },
+            { path: 'definitions-autorisations/test-report-for-working-period', component: TestReportWorkingPeriodComponent },
+            { path: 'definitions-autorisations/member-nomination-form', component: MemberNominationFormComponent },
+            { path: 'definitions-autorisations/acknowledgment-pledge', component: AcknowledgmentPledgeComponent },
+            { path: 'definitions-autorisations/reports', component: ReportsComponent },
+            { path: 'definitions-autorisations/health-assurance', component: HealthAssuranceComponent },
+        ]
+    },
+        {
+        path: '',
+        component: AuthLayoutComponentComponent,
+        children: [
+
+            { path: 'sign-up', component: SignUpComponent },
+        ]
+    },
     
-    { path: 'dashboard/vacations', component: VacationsComponent },
-    { path: 'dashboard/vacations/vacation-request', component: ShortVacationRequestComponent },
-    { path: 'dashboard/vacations/vacation-list', component: VacationsComponent },
-    { path: 'dashboard/vacations/vacation-management', component: VacationsComponent },
-    { path: 'dashboard/vacations/vacations-list', component: VacationListComponent },
-    { path: 'dashboard/autorisation/autorisation', component: AutorisationComponent },
-    { path: 'dashboard/autorisation/autorisation-request', component: AutorisationRequestComponent },
-    { path: 'dashboard/autorisation/morning-autorisation-request', component: MorningLateRequestComponent },
-    { path: 'dashboard/autorisation/autorisation-list', component: AutorisationListComponent},
-    { path: 'dashboard/definitions-autorisations', component: DefinitionsAutorisationsComponent},
-    { path: 'dashboard/definitions-autorisations/national-identity', component: NationalIdentityCardComponent},
-    { path: 'dashboard/definitions-autorisations/release-form', component: ReleaseFormComponent},
-    { path: 'dashboard/definitions-autorisations/test-report-for-working-period', component: TestReportWorkingPeriodComponent},
-    { path: 'dashboard/definitions-autorisations/member-nomination-form', component: MemberNominationFormComponent},
-    { path: 'dashboard/definitions-autorisations/acknowledgment-pledge', component: AcknowledgmentPledgeComponent},
-    { path: 'dashboard/definitions-autorisations/reports', component: ReportsComponent},
-    { path: 'dashboard/definitions-autorisations/health-assurance', component: HealthAssuranceComponent},
+
+
 
 
     { path: '**', component: NationalIdentityCardComponent },

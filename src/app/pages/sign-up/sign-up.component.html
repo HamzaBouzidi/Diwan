@@ -1,0 +1,103 @@
+<div class="registration-container">
+ <div class="registration-form">
+  <img src="assets/logo.png" alt="Logo" class="form-logo" />
+  <h2>التسجيل في منصة ديواني</h2>
+  <div class="heading-underline"></div>
+
+  <form #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)">
+   <!-- Name and Email Row -->
+   <div class="form-row">
+    <div class="form-field">
+     <input id="fullName" type="text" name="fullName" placeholder="الاسم الثلاثي" [(ngModel)]="fullName"
+      #fullName="ngModel" required />
+     <div *ngIf="fullName.invalid && fullName.touched" class="error-message">
+      الاسم الثلاثي مطلوب
+     </div>
+    </div>
+    <div class="form-field">
+     <input id="email" type="email" name="email" placeholder="البريد الإلكتروني" [(ngModel)]="email" #email="ngModel"
+      required />
+     <div *ngIf="email.invalid && email.touched" class="error-message">
+      البريد الإلكتروني مطلوب
+     </div>
+    </div>
+   </div>
+
+   <!-- National ID and Department Row -->
+   <div class="form-row">
+    <div class="form-field">
+     <input id="nationalId" type="text" name="nationalId" placeholder="الرقم الوطني" [(ngModel)]="nationalId"
+      #nationalId="ngModel" required />
+     <div *ngIf="nationalId.invalid && nationalId.touched" class="error-message">
+      الرقم الوطني مطلوب
+     </div>
+    </div>
+    <div class="form-field">
+     <input id="department" type="text" name="department" placeholder="الإدارة التابعة لها" [(ngModel)]="department"
+      #department="ngModel" required />
+     <div *ngIf="department.invalid && department.touched" class="error-message">
+      الإدارة مطلوبة
+     </div>
+    </div>
+   </div>
+
+   <!-- Phone and Job Title Row -->
+   <div class="form-row">
+    <div class="form-field">
+     <input id="phone" type="text" name="phone" placeholder="الهاتف (0910000000)" [(ngModel)]="phone" #phone="ngModel"
+      required />
+     <div *ngIf="phone.invalid && phone.touched" class="error-message">
+      الهاتف مطلوب
+     </div>
+    </div>
+    <div class="form-field">
+     <input id="jobTitle" type="text" name="jobTitle" placeholder="الوظيفة" [(ngModel)]="jobTitle" #jobTitle="ngModel"
+      required />
+     <div *ngIf="jobTitle.invalid && jobTitle.touched" class="error-message">
+      الوظيفة مطلوبة
+     </div>
+    </div>
+   </div>
+
+   <!-- Password and Confirm Password Row -->
+   <div class="form-row">
+    <div class="form-field">
+     <input id="password" type="password" name="password" placeholder="كلمة المرور" [(ngModel)]="password"
+      #password="ngModel" required />
+     <div *ngIf="password.invalid && password.touched" class="error-message">
+      كلمة المرور مطلوبة
+     </div>
+    </div>
+    <div class="form-field">
+     <input id="confirmPassword" type="password" name="confirmPassword" placeholder="تأكيد كلمة المرور"
+      [(ngModel)]="confirmPassword" #confirmPassword="ngModel" required />
+     <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="error-message">
+      تأكيد كلمة المرور مطلوب
+     </div>
+    </div>
+   </div>
+
+   <!-- Submit Button -->
+   <div class="form-actions">
+    <app-my-button [buttonClass]="buttonClass" [buttonType]="buttonType" [text]="text"
+     (clicked)="onSubmit(registrationForm)">
+    </app-my-button>
+   </div>
+  </form>
+ </div>
+
+ <!-- Info Section -->
+ <div class="registration-info">
+  <h3>منصة ديواني</h3>
+  <h4>2024</h4>
+  <h5>توجيهات للتسجيل</h5>
+  <p>لتسهيل إجراءات انضمامك بسرعة يرجى إدخال جميع البيانات بالشكل الصحيح.</p>
+  <h5>قواعد الانضمام</h5>
+  <p>
+   يتعامل معك النظام وفق بريدك الإلكتروني أو رقم هاتفك الذي سوف يتم اعتماده من طرف إدارة الديوان.
+   سوف يتم إرسال بريد أو وسيلة الاتصال الخاصة بك للتأكد من صحة المعلومات وتعديل بياناتك لاحقاً.
+  </p>
+  <p>اذا كان لديك حساب يمكنك تسجيل الدخول من <a href="#">هنا</a>.</p>
+ </div>
+</div>
+<app-footer />
