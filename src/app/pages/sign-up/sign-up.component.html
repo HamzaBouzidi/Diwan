@@ -7,16 +7,21 @@
   <form #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)">
    <!-- Name and Email Row -->
    <div class="form-row">
+    <!-- Full Name Field -->
     <div class="form-field">
-     <input id="fullName" type="text" name="fullName" placeholder="الاسم الثلاثي" [(ngModel)]="fullName"
+     <label for="fullName">الاسم الثلاثي</label>
+     <input id="fullName" type="text" name="fullName" placeholder="أدخل الاسم الثلاثي" [(ngModel)]="fullName"
       #fullName="ngModel" required />
-     <div *ngIf="fullName.invalid && fullName.touched" class="error-message">
-      الاسم الثلاثي مطلوب
+     <div *ngIf="!isFullNameValid() && fullName.touched" class="error-message">
+      الاسم الثلاثي غير صالح
      </div>
     </div>
+
+    <!-- Email Field -->
     <div class="form-field">
-     <input id="email" type="email" name="email" placeholder="البريد الإلكتروني" [(ngModel)]="email" #email="ngModel"
-      required />
+     <label for="email">البريد الإلكتروني</label>
+     <input id="email" type="email" name="email" placeholder="أدخل البريد الإلكتروني" [(ngModel)]="email"
+      #email="ngModel" required />
      <div *ngIf="email.invalid && email.touched" class="error-message">
       البريد الإلكتروني مطلوب
      </div>
@@ -25,15 +30,20 @@
 
    <!-- National ID and Department Row -->
    <div class="form-row">
+    <!-- National ID Field -->
     <div class="form-field">
-     <input id="nationalId" type="text" name="nationalId" placeholder="الرقم الوطني" [(ngModel)]="nationalId"
+     <label for="nationalId">الرقم الوطني</label>
+     <input id="nationalId" type="text" name="nationalId" placeholder="أدخل الرقم الوطني" [(ngModel)]="nationalId"
       #nationalId="ngModel" required />
      <div *ngIf="nationalId.invalid && nationalId.touched" class="error-message">
       الرقم الوطني مطلوب
      </div>
     </div>
+
+    <!-- Department Field -->
     <div class="form-field">
-     <input id="department" type="text" name="department" placeholder="الإدارة التابعة لها" [(ngModel)]="department"
+     <label for="department">الإدارة التابعة لها</label>
+     <input id="department" type="text" name="department" placeholder="أدخل الإدارة" [(ngModel)]="department"
       #department="ngModel" required />
      <div *ngIf="department.invalid && department.touched" class="error-message">
       الإدارة مطلوبة
@@ -43,16 +53,21 @@
 
    <!-- Phone and Job Title Row -->
    <div class="form-row">
+    <!-- Phone Field -->
     <div class="form-field">
+     <label for="phone">الهاتف</label>
      <input id="phone" type="text" name="phone" placeholder="الهاتف (0910000000)" [(ngModel)]="phone" #phone="ngModel"
       required />
      <div *ngIf="phone.invalid && phone.touched" class="error-message">
       الهاتف مطلوب
      </div>
     </div>
+
+    <!-- Job Title Field -->
     <div class="form-field">
-     <input id="jobTitle" type="text" name="jobTitle" placeholder="الوظيفة" [(ngModel)]="jobTitle" #jobTitle="ngModel"
-      required />
+     <label for="jobTitle">الوظيفة</label>
+     <input id="jobTitle" type="text" name="jobTitle" placeholder="أدخل الوظيفة" [(ngModel)]="jobTitle"
+      #jobTitle="ngModel" required />
      <div *ngIf="jobTitle.invalid && jobTitle.touched" class="error-message">
       الوظيفة مطلوبة
      </div>
@@ -61,15 +76,20 @@
 
    <!-- Password and Confirm Password Row -->
    <div class="form-row">
+    <!-- Password Field -->
     <div class="form-field">
-     <input id="password" type="password" name="password" placeholder="كلمة المرور" [(ngModel)]="password"
+     <label for="password">كلمة المرور</label>
+     <input id="password" type="password" name="password" placeholder="أدخل كلمة المرور" [(ngModel)]="password"
       #password="ngModel" required />
      <div *ngIf="password.invalid && password.touched" class="error-message">
       كلمة المرور مطلوبة
      </div>
     </div>
+
+    <!-- Confirm Password Field -->
     <div class="form-field">
-     <input id="confirmPassword" type="password" name="confirmPassword" placeholder="تأكيد كلمة المرور"
+     <label for="confirmPassword">تأكيد كلمة المرور</label>
+     <input id="confirmPassword" type="password" name="confirmPassword" placeholder="أدخل تأكيد كلمة المرور"
       [(ngModel)]="confirmPassword" #confirmPassword="ngModel" required />
      <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="error-message">
       تأكيد كلمة المرور مطلوب
@@ -80,8 +100,7 @@
    <!-- Submit Button -->
    <div class="form-actions">
     <app-my-button [buttonClass]="buttonClass" [buttonType]="buttonType" [text]="text"
-     (clicked)="onSubmit(registrationForm)">
-    </app-my-button>
+     (clicked)="onSubmit(registrationForm)"></app-my-button>
    </div>
   </form>
  </div>
@@ -91,13 +110,17 @@
   <h3>منصة ديواني</h3>
   <h4>2024</h4>
   <h5>توجيهات للتسجيل</h5>
-  <p>لتسهيل إجراءات انضمامك بسرعة يرجى إدخال جميع البيانات بالشكل الصحيح.</p>
+  <p>
+   لتسهيل إجراءات انضمامك بسرعة يرجى إدخال جميع البيانات بالشكل الصحيح.
+  </p>
   <h5>قواعد الانضمام</h5>
   <p>
    يتعامل معك النظام وفق بريدك الإلكتروني أو رقم هاتفك الذي سوف يتم اعتماده من طرف إدارة الديوان.
    سوف يتم إرسال بريد أو وسيلة الاتصال الخاصة بك للتأكد من صحة المعلومات وتعديل بياناتك لاحقاً.
   </p>
-  <p>اذا كان لديك حساب يمكنك تسجيل الدخول من <a href="#">هنا</a>.</p>
+  <p>
+   اذا كان لديك حساب يمكنك تسجيل الدخول من <a href="#">هنا</a>.
+  </p>
  </div>
 </div>
 <app-footer />

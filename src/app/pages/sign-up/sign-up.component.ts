@@ -1,3 +1,4 @@
+import { InputControlService } from './../../services/input-control.service';
 import { Component } from '@angular/core';
 import { MyButtonComponent } from "../../shared/my-button/my-button.component";
 import { FormsModule, NgForm } from '@angular/forms';
@@ -12,7 +13,7 @@ import { FooterComponent } from "../../shared/footer/footer.component";
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent {
-  // All form fields are initialized to empty strings
+  // Initialize all form fields to empty strings
   fullName: string = '';
   email: string = '';
   nationalId: string = '';
@@ -22,16 +23,29 @@ export class SignUpComponent {
   password: string = '';
   confirmPassword: string = '';
 
-  // Button properties
+    constructor(private InputControlService: InputControlService) {}  // Inject the service
+
+  // Validation methods using the service
+  isFullNameValid(): boolean {
+    return this.InputControlService.validateFullName(this.fullName);
+  }
+
+  isEmailValid(): boolean {
+    return this.InputControlService.validateEmail(this.email);
+  }
+
+  isPhoneValid(): boolean {
+    return this.InputControlService.validatePhone(this.phone);
+  }
+
+  // Other properties...
   buttonType: 'submit' = 'submit';
   buttonClass: string = 'blue-button';
   text: string = 'قم بالتسجيل';
 
-  // Handle form submission
   onSubmit(registrationForm: NgForm) {
-    if (registrationForm.valid) {
+    if (registrationForm.valid && this.isFullNameValid() && this.isEmailValid() && this.isPhoneValid()) {
       console.log('Form Submitted', registrationForm.value);
-      // Handle form submission logic here
       registrationForm.reset();
     }
   }
