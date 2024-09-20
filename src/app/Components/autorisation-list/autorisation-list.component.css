@@ -75,3 +75,12 @@
 .authorization-table tr:hover {
   background-color: #f1f1f1;
 }
+
+.employee-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 10px; /* Adds space between the image and name */
+  vertical-align: middle; /* Aligns the image with the text */
+}

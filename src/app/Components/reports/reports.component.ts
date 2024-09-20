@@ -1,37 +1,143 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MemberService } from '../../services/member/member.service';
+import { ReleaseService } from '../../services/release/release.service';
+import { EvaluationReportService } from '../../services/evaluationReport/evaluation-report.service';
 
 @Component({
   selector: 'app-reports',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './reports.component.html',
-  styleUrl: './reports.component.css'
+  styleUrls: ['./reports.component.css']
 })
 export class ReportsComponent {
-  searchTerm: string = '';
+  searchTerm: string = ''; // For search functionality
+  reports: any[] = []; // Array to hold the data based on the selected type
+  filteredReports: any[] = []; // Filtered array for search functionality
+  selectedReportType: string = 'member'; // Default selection is 'member'
+  tableHeaders: string[] = []; // Dynamic table headers
 
-  reports = [
-    { name: 'محمد أحمد', jobTitle: 'مدير', nationalNumber: '123456789', department: 'الإدارة العامة', startDate: new Date('2023-02-15'), endDate: new Date('2023-08-15') },
-    { name: 'سارة خالد', jobTitle: 'مساعد', nationalNumber: '987654321', department: 'قسم الموارد البشرية', startDate: new Date('2023-01-01'), endDate: new Date('2023-06-30') },
-    { name: 'علي يوسف', jobTitle: 'محاسب', nationalNumber: '456789123', department: 'الإدارة المالية', startDate: new Date('2023-03-20'), endDate: new Date('2023-09-20') },
-    { name: 'هدى منصور', jobTitle: 'مسؤول تقنية', nationalNumber: '654123987', department: 'قسم تقنية المعلومات', startDate: new Date('2023-05-01'), endDate: new Date('2023-11-01') },
-    { name: 'إبراهيم حسن', jobTitle: 'مدير مشاريع', nationalNumber: '741852963', department: 'قسم المشاريع', startDate: new Date('2023-04-10'), endDate: new Date('2023-10-10') },
-    { name: 'خالد صالح', jobTitle: 'منسق', nationalNumber: '369258147', department: 'الإدارة التنفيذية', startDate: new Date('2023-06-01'), endDate: new Date('2023-12-01') },
-    { name: 'نورا علي', jobTitle: 'مدقق مالي', nationalNumber: '852963741', department: 'الإدارة المالية', startDate: new Date('2023-07-01'), endDate: new Date('2024-01-01') },
-    { name: 'طارق عماد', jobTitle: 'مدير تقنية', nationalNumber: '147258369', department: 'قسم تقنية المعلومات', startDate: new Date('2023-08-15'), endDate: new Date('2024-02-15') },
-    { name: 'ليلى محمد', jobTitle: 'مدير موارد', nationalNumber: '321654987', department: 'قسم الموارد البشرية', startDate: new Date('2023-09-01'), endDate: new Date('2024-03-01') },
-    { name: 'عمر سعيد', jobTitle: 'مستشار', nationalNumber: '963852741', department: 'الإدارة العامة', startDate: new Date('2023-10-01'), endDate: new Date('2024-04-01') }
-  ];
-    // Method to filter reports based on the search term
-  get filteredReports() {
-    return this.reports.filter((report) => {
-      const search = this.searchTerm.toLowerCase();
-      return (
-        report.name.toLowerCase().includes(search) || 
-        report.jobTitle.toLowerCase().includes(search)
-      );
+  constructor(
+    private memberService: MemberService,
+    private releaseService: ReleaseService,
+    private evaluationService: EvaluationReportService
+  ) { }
+
+  ngOnInit(): void {
+    this.loadReports('member'); // Load default reports on initialization
+  }
+
+  // Function to load reports based on the selected report type
+  loadReports(reportType: string): void {
+    this.selectedReportType = reportType;
+
+    switch (reportType) {
+      case 'member':
+        this.loadMemberReports();
+        break;
+      case 'release':
+        this.loadReleaseReports();
+        break;
+      case 'evaluation':
+        this.loadEvaluationReports();
+        break;
+    }
+  }
+
+  // Load member reports and set the headers to show user-specific fields
+  loadMemberReports(): void {
+    this.memberService.getMembers().subscribe((data) => {
+      // Only include user_name, user_direction_nomi, user_dipl, day, and user_cu_direction
+      this.reports = data.map((report: any) => ({
+        user_name: report.user_name,
+        user_direction_nomi: report.user_direction_nomi,
+        user_dipl: report.user_dipl,
+        day: report.day,
+        user_cu_direction: report.user_cu_direction
+      }));
+
+      // Set table headers for member reports
+      this.tableHeaders = ['اسم المستخدم', 'ترشيح الاتجاه', 'الدبلوم', 'اليوم', 'الاتجاه الحالي', 'الإجراءات'];
+
+      this.applyFilter(); // Apply filter on loaded data
     });
+  }
+
+  // Load release reports and set the headers
+  loadReleaseReports(): void {
+    this.releaseService.getReleases().subscribe((data) => {
+      // Only include directorName, employeeName, and department
+      this.reports = data.map((report: any) => ({
+        directorName: report.directorName,
+        employeeName: report.employeeName,
+        department: report.department
+      }));
+
+      // Set table headers for release reports
+      this.tableHeaders = ['اسم المدير', 'اسم الموظف', 'الإدارة', 'الإجراءات'];
+
+      this.applyFilter(); // Apply filter on loaded data
+    });
+  }
+
+  // Load evaluation reports and set the headers
+  loadEvaluationReports(): void {
+    this.evaluationService.getEvaluationReports().subscribe((data) => {
+      this.reports = data.map(report => ({
+        ...report,
+        startDate: report.startDate || '', // Ensure dates are present
+        endDate: report.endDate || ''
+      }));
+      this.tableHeaders = ['الاسم', 'الوظيفة', 'الرقم الوطني', 'الإدارة', 'المعرفة الوظيفية', 'المهارات التقنية', 'العمل الجماعي', 'حل المشكلات', 'إدارة الوقت', 'اتخاذ القرار', 'الإجراءات'];
+      this.applyFilter(); // Apply filter on loaded data
+    });
+  }
+
+  // Apply search filter to the reports
+  applyFilter(): void {
+    const search = this.searchTerm.toLowerCase();
+    this.filteredReports = this.reports.filter((report) =>
+      Object.values(report).some(value =>
+        String(value).toLowerCase().includes(search)
+      )
+    );
+  }
+
+  // Change report type and load the corresponding reports
+  onReportTypeChange(reportType: string): void {
+    this.loadReports(reportType);
+  }
+
+  // Helper function to get keys dynamically for the table rows
+  getKeys(report: any): string[] {
+    return Object.keys(report).filter(key => {
+      const displayName = this.getDisplayName(key);
+      return this.tableHeaders.includes(displayName); // Exclude 'الإجراءات'
+    });
+  }
+
+  // Helper function to map object keys to display names (Arabic headers)
+  getDisplayName(key: string): string {
+    const mapping: { [key: string]: string } = {
+      user_name: 'اسم المستخدم',
+      user_direction_nomi: 'ترشيح الاتجاه',
+      user_dipl: 'الدبلوم',
+      day: 'اليوم',
+      user_cu_direction: 'الاتجاه الحالي',
+      directorName: 'اسم المدير',
+      employeeName: 'اسم الموظف',
+      department: 'الإدارة',
+      startDate: 'تاريخ المباشرة',
+      endDate: 'تاريخ انتهاء فترة الاختبار',
+      jobKnowledge: 'المعرفة الوظيفية',
+      technicalSkills: 'المهارات التقنية',
+      teamwork: 'العمل الجماعي',
+      problemSolving: 'حل المشكلات',
+      timeManagement: 'إدارة الوقت',
+      decisionMaking: 'اتخاذ القرار'
+    };
+    return mapping[key] || key;
   }
 }

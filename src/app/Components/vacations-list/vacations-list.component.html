@@ -7,9 +7,11 @@
   <thead>
     <tr>
       <th>اسم الموظف</th>
-      <th>تاريخ الإجازة</th>
+      <th>تاريخ بدء الإجازة</th>
+      <th>تاريخ نهاية الإجازة</th>
       <th>مدة الإجازة</th>
       <th>نوع الإجازة</th>
+      <th>حالة الإجازة</th>
     </tr>
   </thead>
   <tbody>
@@ -18,9 +20,15 @@
         <img [src]="employee.profilePicture" alt="صورة الموظف" class="profile-img">
         <span class="employee-name">{{ employee.name }}</span>
       </td>
-      <td>{{ employee.vacationDate | date: 'MMM dd, yyyy' }}</td>
+      <td>{{ employee.vacationStartDate | date: 'MMM dd, yyyy' }}</td>
+      <td>{{ employee.vacationEndDate | date: 'MMM dd, yyyy' }}</td>
       <td>{{ employee.vacationDays }}</td>
       <td>{{ employee.vacationType }}</td>
+      <td>
+        <span *ngIf="employee.state === 'مقبولة'" class="status accepted">✔️ مقبولة</span>
+        <span *ngIf="employee.state === 'مرفوضة'" class="status rejected">❌ مرفوضة</span>
+        <span *ngIf="employee.state === 'قيد الانتظار'" class="status pending">🔄 قيد التنفيذ</span>
+      </td>
     </tr>
   </tbody>
 </table>

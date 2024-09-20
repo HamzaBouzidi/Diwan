@@ -1,61 +1,73 @@
 <div class="registration-container">
- <div class="registration-form">
-  <img src="assets/logo.png" alt="Logo" class="form-logo" />
-  <h2>التسجيل في منصة ديواني</h2>
-  <div class="heading-underline"></div>
+  <div class="registration-form">
+    <img src="assets/logo.png" alt="Logo" class="form-logo" />
+    <h2>التسجيل في منصة ديواني</h2>
+    <div class="heading-underline"></div>
 
-  <form #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)">
-   <!-- Name and Email Row -->
-   <div class="form-row">
+    <form #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)">
+      <!-- Name and Email Row -->
+      <div class="form-row">
 
-
-    <!-- Email Field -->
-    <div class="form-field">
-     <label for="email">البريد الإلكتروني</label>
-     <input id="email" type="email" name="email" placeholder="أدخل البريد الإلكتروني" [(ngModel)]="email"
-      #email="ngModel" required />
-     <div *ngIf="email.invalid && email.touched" class="error-message">
-      البريد الإلكتروني مطلوب
-     </div>
-    </div>
-
-    <!-- Password Field -->
-    <div class="form-field">
-     <label for="password">كلمة المرور</label>
-     <input id="password" type="password" name="password" placeholder="أدخل كلمة المرور" [(ngModel)]="password"
-      #password="ngModel" required />
-     <div *ngIf="password.invalid && password.touched" class="error-message">
-      كلمة المرور مطلوبة
-     </div>
-    </div>
-   </div>
-
-
-
-   <!-- Submit Button -->
-   <div class="form-actions">
-    <app-my-button [buttonClass]="buttonClass" [buttonType]="buttonType" [text]="text"
-     (clicked)="onSubmit(registrationForm)"></app-my-button>
-   </div>
-  </form>
- </div>
-
- <!-- Info Section -->
- <div class="registration-info">
-  <h3>منصة ديواني</h3>
-  <h4>2024</h4>
-  <h5>توجيهات للتسجيل</h5>
-  <p>
-   لتسهيل إجراءات انضمامك بسرعة يرجى إدخال جميع البيانات بالشكل الصحيح.
-  </p>
-  <h5>قواعد الانضمام</h5>
-  <p>
-   يتعامل معك النظام وفق بريدك الإلكتروني أو رقم هاتفك الذي سوف يتم اعتماده من طرف إدارة الديوان.
-   سوف يتم إرسال بريد أو وسيلة الاتصال الخاصة بك للتأكد من صحة المعلومات وتعديل بياناتك لاحقاً.
-  </p>
-  <p>
-   اذا كان لديك حساب يمكنك تسجيل الدخول من <a href="#">هنا</a>.
-  </p>
- </div>
+        <!-- Email Field -->
+        <div class="form-field">
+          <label for="email">البريد الإلكتروني</label>
+          <input id="email" type="email" name="email" placeholder="أدخل البريد الإلكتروني" [(ngModel)]="email"
+            required />
+          <!-- Error message for empty email field -->
+          <div *ngIf="emptyEmail" class="error-message">
+            البريد الإلكتروني مطلوب
+          </div>
+<!-- Error message for invalid email format -->
+<div *ngIf="invalidEmail" class="error-message">
+  الرجاء إدخال بريد إلكتروني صالح
 </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-field">
+          <label for="password">كلمة المرور</label>
+          <input id="password" type="password" name="password" placeholder="أدخل كلمة المرور" [(ngModel)]="password"
+             required />
+<!-- Error message for empty password field -->
+<div *ngIf="emptyPassword" class="error-message">
+  كلمة المرور مطلوبة
+</div>
+</div>
+</div>
+
+      <!-- Submit Button -->
+      <div class="form-actions">
+        <app-my-button [buttonClass]="'blue-button'" [buttonType]="'submit'" [text]="'قم بالتسجيل'"
+          (clicked)="registrationForm.ngSubmit.emit()">></app-my-button>
+        </div>
+        </form>
+<!-- Error message for failed login attempt -->
+<div *ngIf="loginFailed" class="error-message">
+  فشل تسجيل الدخول، يرجى التأكد من البريد الإلكتروني وكلمة المرور
+</div>
+  </div>
+
+  <!-- Info Section -->
+  <div class="registration-info">
+    <h3>منصة ديواني</h3>
+    <h4>2024</h4>
+    <h5>توجيهات للتسجيل</h5>
+    <p>
+      لتسهيل إجراءات انضمامك بسرعة يرجى إدخال جميع البيانات بالشكل الصحيح.
+    </p>
+    <h5>قواعد الانضمام</h5>
+    <p>
+      يتعامل معك النظام وفق بريدك الإلكتروني أو رقم هاتفك الذي سوف يتم اعتماده من طرف إدارة الديوان.
+      سوف يتم إرسال بريد أو وسيلة الاتصال الخاصة بك للتأكد من صحة المعلومات وتعديل بياناتك لاحقاً.
+    </p>
+    <p>
+      اذا كان لديك حساب يمكنك تسجيل الدخول من <a href="#">هنا</a>.
+    </p>
+  </div>
+</div>
+<!-- Done Modal -->
+<app-done-modal [isVisible]="isModalVisible" (close)="closeModal()">
+  <p>شكراً لتسجيلك في منصة ديواني. سيتم التواصل معك قريباً.</p>
+</app-done-modal>
+
 <app-footer />

@@ -18,12 +18,15 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { LayoutComponent } from './Components/layout/layout.component';
 import { AuthLayoutComponentComponent } from './layouts/auth-layout-component/auth-layout-component.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
+import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
 
     {
         path: 'dashboard',
         component: LayoutComponent,
+        canActivate: [AuthGuard],
         children: [
             { path: 'vacations', component: VacationsComponent },
             { path: 'vacations/vacation-request', component: ShortVacationRequestComponent },
@@ -42,23 +45,25 @@ export const routes: Routes = [
             { path: 'definitions-autorisations/acknowledgment-pledge', component: AcknowledgmentPledgeComponent },
             { path: 'definitions-autorisations/reports', component: ReportsComponent },
             { path: 'definitions-autorisations/health-assurance', component: HealthAssuranceComponent },
+            { path: 'home', component: HomeComponent },
+
         ]
     },
-        {
+    {
         path: '',
         component: AuthLayoutComponentComponent,
         children: [
 
             { path: 'sign-up', component: SignUpComponent },
-            { path: 'sign-in', component: LoginComponent },
+            { path: 'login', component: LoginComponent },
 
         ]
     },
-    
 
 
 
 
-    { path: '**', component: NationalIdentityCardComponent },
+
+    { path: '**', component: LoginComponent },
 
 ];

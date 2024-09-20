@@ -34,7 +34,7 @@
 }
 
 h2 {
-  color: #333333; /* Dark gray for the heading */
+  color: #23689B; /* Dark gray for the heading */
   font-size: 1.8rem;
   margin: 0; /* Remove margin to align properly with the logo */
   text-align: center; /* Center the heading text */
@@ -47,6 +47,7 @@ h2 {
   gap: 1.5rem; /* Spacing between fields */
   margin-bottom: 1.5rem;
   justify-content: space-between; /* Space between form fields */
+  align-items: center; /* Vertically align the fields */
 }
 
 .form-field {

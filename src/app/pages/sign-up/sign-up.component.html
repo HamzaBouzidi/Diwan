@@ -11,20 +11,15 @@
     <div class="form-field">
      <label for="fullName">الاسم الثلاثي</label>
      <input id="fullName" type="text" name="fullName" placeholder="أدخل الاسم الثلاثي" [(ngModel)]="fullName"
-      #fullName="ngModel" required />
-     <div *ngIf="!isFullNameValid() && fullName.touched" class="error-message">
-      الاسم الثلاثي غير صالح
-     </div>
+      required />
+
     </div>
 
     <!-- Email Field -->
     <div class="form-field">
      <label for="email">البريد الإلكتروني</label>
      <input id="email" type="email" name="email" placeholder="أدخل البريد الإلكتروني" [(ngModel)]="email"
-      #email="ngModel" required />
-     <div *ngIf="email.invalid && email.touched" class="error-message">
-      البريد الإلكتروني مطلوب
-     </div>
+       required />
     </div>
    </div>
 
@@ -32,23 +27,12 @@
    <div class="form-row">
     <!-- National ID Field -->
     <div class="form-field">
-     <label for="nationalId">الرقم الوطني</label>
+    <label for="nationalId">الرقم الوظيفي</label>
      <input id="nationalId" type="text" name="nationalId" placeholder="أدخل الرقم الوطني" [(ngModel)]="nationalId"
-      #nationalId="ngModel" required />
-     <div *ngIf="nationalId.invalid && nationalId.touched" class="error-message">
-      الرقم الوطني مطلوب
-     </div>
+       required />
+
     </div>
 
-    <!-- Department Field -->
-    <div class="form-field">
-     <label for="department">الإدارة التابعة لها</label>
-     <input id="department" type="text" name="department" placeholder="أدخل الإدارة" [(ngModel)]="department"
-      #department="ngModel" required />
-     <div *ngIf="department.invalid && department.touched" class="error-message">
-      الإدارة مطلوبة
-     </div>
-    </div>
    </div>
 
    <!-- Phone and Job Title Row -->
@@ -56,22 +40,11 @@
     <!-- Phone Field -->
     <div class="form-field">
      <label for="phone">الهاتف</label>
-     <input id="phone" type="text" name="phone" placeholder="الهاتف (0910000000)" [(ngModel)]="phone" #phone="ngModel"
+    <input id="phone" type="text" name="phone" placeholder="الهاتف (0910000000)" [(ngModel)]="phone"
       required />
-     <div *ngIf="phone.invalid && phone.touched" class="error-message">
-      الهاتف مطلوب
-     </div>
+
     </div>
 
-    <!-- Job Title Field -->
-    <div class="form-field">
-     <label for="jobTitle">الوظيفة</label>
-     <input id="jobTitle" type="text" name="jobTitle" placeholder="أدخل الوظيفة" [(ngModel)]="jobTitle"
-      #jobTitle="ngModel" required />
-     <div *ngIf="jobTitle.invalid && jobTitle.touched" class="error-message">
-      الوظيفة مطلوبة
-     </div>
-    </div>
    </div>
 
    <!-- Password and Confirm Password Row -->
@@ -80,27 +53,23 @@
     <div class="form-field">
      <label for="password">كلمة المرور</label>
      <input id="password" type="password" name="password" placeholder="أدخل كلمة المرور" [(ngModel)]="password"
-      #password="ngModel" required />
-     <div *ngIf="password.invalid && password.touched" class="error-message">
-      كلمة المرور مطلوبة
-     </div>
+      required />
+
     </div>
 
     <!-- Confirm Password Field -->
     <div class="form-field">
      <label for="confirmPassword">تأكيد كلمة المرور</label>
      <input id="confirmPassword" type="password" name="confirmPassword" placeholder="أدخل تأكيد كلمة المرور"
-      [(ngModel)]="confirmPassword" #confirmPassword="ngModel" required />
-     <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="error-message">
-      تأكيد كلمة المرور مطلوب
-     </div>
+      [(ngModel)]="confirmPassword"  required />
+
     </div>
    </div>
 
    <!-- Submit Button -->
    <div class="form-actions">
     <app-my-button [buttonClass]="buttonClass" [buttonType]="buttonType" [text]="text"
-     (clicked)="onSubmit(registrationForm)"></app-my-button>
+     (clicked)="registrationForm.ngSubmit.emit()"></app-my-button>
    </div>
   </form>
  </div>
@@ -123,4 +92,9 @@
   </p>
  </div>
 </div>
+<!-- Done Modal -->
+<app-done-modal [isVisible]="isModalVisible" (close)="closeModal()">
+  <p>شكراً لتسجيلك في منصة ديواني. سيتم التواصل معك قريباً.</p>
+</app-done-modal>
+
 <app-footer />

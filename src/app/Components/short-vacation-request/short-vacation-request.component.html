@@ -4,147 +4,59 @@
       <img src="assets/logo.png" alt="Company Logo" class="form-logo" />
       <h2>طلب إجازة</h2>
     </div>
-<p-toast />
+    <p-toast></p-toast>
     <form #vacationForm="ngForm" (ngSubmit)="onSubmit(vacationForm)">
-      <!-- Use a container for grouped fields -->
-      <div class="form-row">
+      <!-- Employee Details -->
+      <div class="form-row align-items-center">
         <div class="form-field">
           <label for="employeeName">اسم الموظف</label>
-          <span class="p-input-icon-left">
-            <i class="pi pi-user"></i>
-            <input 
-              id="employeeName" 
-              type="text" 
-              name="employeeName" 
-              placeholder="أدخل اسم الموظف" 
-              [(ngModel)]="employeeName" 
-              #employeeNameCtrl="ngModel"
-              required
-            />
-          </span>
-          <!-- Error message for employeeName -->
-          <div *ngIf="employeeNameCtrl.invalid && employeeNameCtrl.touched" class="error-message">
-            الرجاء إدخال اسم الموظف
+          <input id="employeeName" type="text" name="employeeName" [(ngModel)]="employeeName" disabled class="readonly-input" />
           </div>
-        </div>
+        <div class="form-field">
+          <label for="department">الادارة التي ينتمي اليها</label>
+          <input id="department" type="text" name="department" [(ngModel)]="selectedDepartment" disabled class="readonly-input" />
+          </div>
+          </div>
 
-<div class="form-field">
-  <label for="department">الادارة التي ينتمي اليها</label>
-  <select 
-    id="department" 
-    name="department" 
-    [(ngModel)]="selectedDepartment" 
-    #departmentCtrl="ngModel" 
-    required
-  >
-    <option value="" disabled selected>اختر الإدارة</option> <!-- Placeholder option -->
-    <option *ngFor="let department of departments" [value]="department.code">
-      {{ department.name }}
-    </option>
-  </select>
-  
-  <!-- Error message for department -->
-  <div *ngIf="departmentCtrl.invalid && departmentCtrl.touched" class="error-message">
-    الرجاء اختيار الإدارة
-  </div>
-</div>
-
-      </div>
-
-      <!-- Vacation Type Selection (Radio Buttons) -->
-      <div class="form-field">
-        <label for="vacationType">نوع الإجازة</label>
-        <div class="radio-group">
-          <label>
-            <input type="radio" name="vacationType" [(ngModel)]="selectedVacationType" value="short" required />
-            إجازة قصيرة
-          </label>
-          <label>
-            <input type="radio" name="vacationType" [(ngModel)]="selectedVacationType" value="emergency" required />
-            إجازة طارئة
-          </label>
-        </div>
-      </div>
-
+      <!-- Vacation Duration and Start Date -->
       <div class="form-row">
         <div class="form-field">
           <label for="vacationDuration">مدة الاجازة</label>
           <span class="p-input-icon-left">
             <i class="pi pi-clock"></i>
-            <input 
-              id="vacationDuration" 
-              type="number" 
-              name="vacationDuration" 
-              placeholder="أدخل مدة الاجازة" 
-              [(ngModel)]="vacationDuration" 
-              #vacationDurationCtrl="ngModel"
-              required min="1" max="30"
-            />
+            <input id="vacationDuration" type="number" name="vacationDuration" placeholder="أدخل مدة الاجازة"
+              [(ngModel)]="vacationDuration" (ngModelChange)="onVacationDurationChange()" required min="1" max="30" />
           </span>
-          <!-- Error message for vacationDuration -->
-          <div *ngIf="vacationDurationCtrl.invalid && vacationDurationCtrl.touched" class="error-message">
-            مدة الإجازة يجب أن تكون بين 1 و 30 يومًا
-          </div>
         </div>
 
         <div class="form-field">
           <label for="vacationStartDate">التاريخ بدء الاجازة</label>
-          <input 
-            id="vacationStartDate" 
-            type="date" 
-            name="vacationStartDate" 
-            [(ngModel)]="vacationStartDate" 
-            #vacationStartDateCtrl="ngModel" 
-            required
-          />
-          <!-- Error message for vacationStartDate -->
-          <div *ngIf="vacationStartDateCtrl.invalid && vacationStartDateCtrl.touched" class="error-message">
-            الرجاء إدخال تاريخ بدء الإجازة
+          <input id="vacationStartDate" type="date" name="vacationStartDate" [(ngModel)]="vacationStartDate"
+            (ngModelChange)="onVacationStartDateChange()" required />
           </div>
-        </div>
-
-        <div class="form-field">
-          <label for="remainingBalance">الرصيد المتبقي</label>
-          <span class="p-input-icon-left">
-            <i class="pi pi-wallet"></i>
-            <input 
-              id="remainingBalance" 
-              type="number" 
-              name="remainingBalance" 
-              placeholder="أدخل الرصيد المتبقي" 
-              [(ngModel)]="remainingBalance" 
-              #remainingBalanceCtrl="ngModel"
-              required
-            />
-          </span>
-          <!-- Error message for remainingBalance -->
-          <div *ngIf="remainingBalanceCtrl.invalid && remainingBalanceCtrl.touched" class="error-message">
-            الرجاء إدخال الرصيد المتبقي
           </div>
-        </div>
-      </div>
 
+<div class="form-field">
+  <label for="vacationEndDate">التاريخ نهاية الاجازة</label>
+  <input id="vacationEndDate" type="text" name="vacationEndDate" [(ngModel)]="vacationEndDate" disabled
+    class="readonly-input" />
+  </div>
+
+<!-- Vacation Purpose -->
       <div class="form-field">
         <label for="vacationPurpose">الغرض من الحصول على الاجازة</label>
-        <textarea 
-          id="vacationPurpose" 
-          name="vacationPurpose" 
-          placeholder="أدخل الغرض" 
-          rows="3" 
-          [(ngModel)]="vacationPurpose" 
-          #vacationPurposeCtrl="ngModel" 
-          required
-        ></textarea>
-        <!-- Error message for vacationPurpose -->
-        <div *ngIf="vacationPurposeCtrl.invalid && vacationPurposeCtrl.touched" class="error-message">
-          الرجاء إدخال الغرض من الإجازة
-        </div>
+        <textarea id="vacationPurpose" name="vacationPurpose" placeholder="أدخل الغرض" rows="3" [(ngModel)]="vacationPurpose"
+          required></textarea>
       </div>
 
       <div class="form-actions">
-        <button type="submit" class="p-button-rounded p-button-outlined p-button-success" [disabled]="vacationForm.invalid">
+        <button type="submit" class="p-button-rounded p-button-outlined p-button-success" [disabled]="vacationForm.invalid"
+          (click)="openModal()">
           إرسال
         </button>
+        <app-done-modal [isVisible]="isModalVisible" (close)="closeModal()">
+          <h3>الرجاء انتظار قرار المعنيين بالأمر,</h3>
+        </app-done-modal>
       </div>
     </form>
   </div>

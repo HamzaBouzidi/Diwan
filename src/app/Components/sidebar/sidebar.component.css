@@ -8,7 +8,6 @@
     transition: all 0.3s ease;
     border: none;
     padding: 0;
-    border-top-left-radius: 20px; /* Add rounding to top-left corner */
     border-bottom-left-radius: 20px; /* Add rounding to bottom-left corner */
     z-index: 1000;
     width: 300px;
@@ -47,6 +46,7 @@
 
 .round {
     border-radius: 50%;
+    border-top:50%; ;
     height: 6rem; /* Slightly larger image */
     width: 6rem; /* Match height for a perfect circle */
     object-fit: cover; /* Ensure the image covers the area without distortion */
@@ -140,3 +140,9 @@
     display: block;
     margin: 0 auto;
 }
+.icon-container {
+  margin-left: 1rem;
+  font-size: 1.4rem; /* Adjust icon size */
+  color: #F4F5DB; /* Same color as the text */
+}
+

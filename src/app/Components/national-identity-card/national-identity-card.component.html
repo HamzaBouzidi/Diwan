@@ -62,18 +62,16 @@
         <label for="position">الصفة</label>
         <div class="radio-group">
           <label>
-            <input type="radio" name="position" [(ngModel)]="position" value="عضو" required /> عضو
+            <input type="radio" name="position" [(ngModel)]="position" value="عضو" /> عضو
           </label>
           <label>
-            <input type="radio" name="position" [(ngModel)]="position" value="مأمور ضبط قضائي" required /> مأمور ضبط قضائي
+            <input type="radio" name="position" [(ngModel)]="position" value="مأمور ضبط قضائي" /> مأمور ضبط قضائي
           </label>
           <label>
-            <input type="radio" name="position" [(ngModel)]="position" value="موظف" required /> موظف
+            <input type="radio" name="position" [(ngModel)]="position" value="موظف" /> موظف
           </label>
         </div>
-        <div *ngIf="!position && identityForm.submitted" class="error-message">
-          الرجاء اختيار الصفة
-        </div>
+
       </div>
 
       <!-- Form Actions -->
@@ -82,4 +80,8 @@
       </div>
     </form>
   </div>
+        <!-- Success Modal -->
+        <app-done-modal [isVisible]="isModalVisible" (close)="closeModal()">
+          <h3>تم إرسال الطلب</h3>
+        </app-done-modal>
 </div>

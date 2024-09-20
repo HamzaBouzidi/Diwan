@@ -7,40 +7,13 @@
 
     <form #lateRequestForm="ngForm" (ngSubmit)="onSubmit(lateRequestForm)">
       <!-- Form section for employee details -->
+      <!-- Employee Name -->
       <div class="form-field">
         <label for="employeeName">اسم الموظف</label>
-        <input 
-          id="employeeName" 
-          type="text" 
-          name="employeeName" 
-          placeholder="أدخل اسم الموظف" 
-          [(ngModel)]="employeeName" 
-          #employeeNameCtrl="ngModel"
-          required
-        />
-        <!-- Error message for employeeName -->
-        <div *ngIf="employeeNameCtrl.invalid && employeeNameCtrl.touched" class="error-message">
-          الرجاء إدخال اسم الموظف
-        </div>
+        <input id="employeeName" type="text" [(ngModel)]="employeeName" name="employeeName" disabled class="readonly-input" />
       </div>
 
-      <!-- Late duration section -->
-      <div class="form-field">
-        <label for="latePeriod">مدة التأخير</label>
-        <input 
-          id="latePeriod" 
-          type="text" 
-          name="latePeriod" 
-          placeholder="أدخل مدة التأخير" 
-          [(ngModel)]="latePeriod" 
-          #latePeriodCtrl="ngModel" 
-          required
-        />
-        <!-- Error message for latePeriod -->
-        <div *ngIf="latePeriodCtrl.invalid && latePeriodCtrl.touched" class="error-message">
-          الرجاء إدخال مدة التأخير
-        </div>
-      </div>
+    
 
       <!-- Reason for lateness section -->
       <div class="form-field">
@@ -100,4 +73,8 @@
       </div>
     </form>
   </div>
+<!-- Success Modal -->
+<app-done-modal [isVisible]="isModalVisible" (close)="closeModal()">
+  <h3>تم إرسال إذن التأخر بنجاح</h3>
+</app-done-modal>
 </div>

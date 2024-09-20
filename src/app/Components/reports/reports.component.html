@@ -1,46 +1,35 @@
-<div class="list-container">
-  <h2>قائمة تقارير فترة الاختبار</h2>
+<div class="report-container">
+  <h2>إدارة التقارير</h2>
+
+  <!-- Buttons to load different report types -->
+  <div class="report-buttons">
+    <button (click)="onReportTypeChange('member')" [class.active]="selectedReportType === 'member'">تقرير العضو</button>
+    <button (click)="onReportTypeChange('release')" [class.active]="selectedReportType === 'release'">تقرير
+      الإفراج</button>
+    <button (click)="onReportTypeChange('evaluation')" [class.active]="selectedReportType === 'evaluation'">تقرير
+      التقييم</button>
+  </div>
 
   <!-- Search Bar -->
   <div class="search-container">
-    <input 
-      type="text" 
-      [(ngModel)]="searchTerm" 
-      placeholder="ابحث عن الاسم أو الوظيفة" 
-      class="search-input"
-    />
-    <i class="fas fa-search search-icon"></i>
+    <input type="text" [(ngModel)]="searchTerm" placeholder="ابحث عن الاسم أو الوظيفة" class="search-input"
+      (input)="applyFilter()" />
   </div>
 
-  <!-- Reports Table -->
+  <!-- Dynamic Reports Table -->
   <div class="table-wrapper">
     <table class="report-table" dir="rtl">
       <thead>
         <tr>
-          <th>الاسم</th>
-          <th>الوظيفة</th>
-          <th>الرقم الوطني</th>
-          <th>الإدارة</th>
-          <th>تاريخ المباشرة</th>
-          <th>تاريخ انتهاء فترة الاختبار</th>
-          <th>الإجراءات</th>
+          <th *ngFor="let header of tableHeaders">{{ header }}</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let report of filteredReports">
-          <td>{{ report.name }}</td>
-          <td>{{ report.jobTitle }}</td>
-          <td>{{ report.nationalNumber }}</td>
-          <td>{{ report.department }}</td>
-          <td>{{ report.startDate | date: 'yyyy-MM-dd' }}</td>
-          <td>{{ report.endDate | date: 'yyyy-MM-dd' }}</td>
+          <td *ngFor="let key of getKeys(report)">{{ report[key] }}</td>
           <td class="action-buttons">
-            <button class="btn-view">
-              <i class="pi pi-eye"></i> عرض
-            </button>
-            <button class="btn-edit">
-              <i class="pi pi-pencil"></i> تعديل
-            </button>
+            <button class="btn-view">عرض</button>
+            <button class="btn-edit">تعديل</button>
           </td>
         </tr>
       </tbody>
